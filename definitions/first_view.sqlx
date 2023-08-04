@@ -1,0 +1,38 @@
+config {
+    type: "table",
+    schema: "m_blup",
+      description: "Esta tabla contiene a todos los usuarios que pertenecen al canal de subdistribucion. / This table contains all users belonging to the subdistribution channel.",
+    columns: {
+    "id": "Número de FILA asignado a cada fila / ROW number assigned to each row",
+    "drugstore_name": "Nombre de la tienda de medicamentos / Name of the drugstore",
+    "address": "Dirección de la tienda de medicamentos / Address of the drugstore",
+    "type_association": "Tipo de asociación de la tienda de medicamentos / Type of association for the drugstore",
+    "product_name": "Nombre del producto / Name of the product",
+    "cost": "Costo del producto / Cost of the product",
+    "initial_quantity": "Cantidad inicial del producto en inventario / Initial quantity of the product in inventory",
+    "actually_quantity": "Cantidad actual del producto en inventario / Current quantity of the product in inventory",
+    "active_inventory": "Estado del producto en inventario (activo o no) / Status of the product in inventory (active or not)",
+    "product_id": "ID del producto asociado / ID of the associated product"
+},
+    assertions: {
+     uniqueKey: ["id"]
+  },
+    tags: ["dimension"]
+}
+
+select 
+ROW_NUMBER() OVER() AS id,
+d.name as drugstore_name, 
+d.address, 
+d.type_association, 
+p.name as product_name, 
+i.cost, 
+i.initial_quantity, 
+i.actually_quantity,
+i.active as active_inventory,
+i.product_id 
+from `masterdata-farmu.db_pitayas.inventories` i
+left join `masterdata-farmu.db_pitayas.products` p 
+on i.product_id = p.id 
+left join `masterdata-farmu.db_pitayas.drugstores` d 
+on p.drugstore_id = d.id 

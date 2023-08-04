@@ -1,0 +1,10 @@
+{
+  "defaultSchema": "m_blup",
+  "warehouse": "bigquery",
+  "defaultDatabase": "datamartblup",
+  "defaultLocation": "US",
+  "assertionSchema": "stg_blup",
+  "vars": {
+    "executionSetting":"dev"
+ }
+}
