@@ -1,0 +1,27 @@
+config {
+    type: "table",
+    schema: "m_blup",
+      description: "Esta tabla contiene a todos los usuarios que pertenecen al canal de subdistribucion. / This table contains all users belonging to the subdistribution channel.",
+    assertions: {
+     uniqueKey: ["id"]
+  },
+    tags: ["dimension"]
+}
+
+select 
+od.id, 
+od.order_id, 
+od.product_id, 
+od.quantity, 
+od.sale_price,
+od.subtotal, 
+od.percent_discount, 
+od.percent_iva, 
+od.free_sale,
+o.drugstore_id 
+from `masterdata-farmu.db_pitayas.order_details` od 
+left join `masterdata-farmu.db_pitayas.orders` o on o.id = od.order_id 
+left join `masterdata-farmu.db_pitayas.product_presentations` pp on od.product_presentation_id = pp.id 
+left join `masterdata-farmu.db_pitayas.products` p on od.product_id = p.id 
+left join `masterdata-farmu.db_pitayas.products_farmu` pf on p.product_farmu_id = pf.id
+

@@ -1,0 +1,21 @@
+config {
+    type: "table",
+    schema: "m_blup",
+      description: "Esta tabla contiene a todos los usuarios que pertenecen al canal de subdistribucion. / This table contains all users belonging to the subdistribution channel.",
+    assertions: {
+     uniqueKey: ["id"]
+  },
+    tags: ["dimension"]
+}
+
+select 
+ROW_NUMBER() OVER() AS id_drugstore,
+d.id as drugstore_id, 
+d.name as drugstore_name, 
+d.address as drugstore_address, 
+d.type_association as drugstore_type_association,
+c.name as company_name,
+ci.name as city_name
+from `masterdata-farmu.db_pitayas.drugstores` d 
+left join `masterdata-farmu.db_pitayas.companies` c on d.company_id = c.id
+left join `masterdata-farmu.db_pitayas.cities` ci on d.city_id = ci.id
