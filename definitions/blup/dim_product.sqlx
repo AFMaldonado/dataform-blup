@@ -22,7 +22,7 @@ config {
     "description": "Descripción del producto / Product description"
 },  
     assertions: {
-    uniqueKey: ["id"]
+    uniqueKey: ["id_product"]
   },
     tags: ["dimension"]
 }

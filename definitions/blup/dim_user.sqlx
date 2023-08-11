@@ -16,7 +16,7 @@ config {
     "drugstore_type_association": "Tipo de asociación de la farmacia / Drugstore Type of Association"
 },
     assertions: {
-     uniqueKey: ["id"]
+     uniqueKey: ["id_user"]
   },
     tags: ["dimension"]
 }
