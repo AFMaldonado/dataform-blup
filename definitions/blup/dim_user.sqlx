@@ -1,7 +1,7 @@
 config {
     type: "table",
     schema: "m_blup",
-    description: "Esta tabla contiene a todos los usuarios que pertenecen al canal de subdistribucion. / This table contains all users belonging to the subdistribution channel.",
+    description: "Esta tabla contiene a todos los usuarios de las distintas droguerias. / This table contains all the users from different drugstores.",
     columns: {
     "id": "ID de usuario / User ID",
     "first_name": "Primer nombre del usuario / User's First Name",
@@ -22,9 +22,8 @@ config {
 }
 
 select 
-ROW_NUMBER() OVER() AS id_user_drugstore,
-ud.user_id,
-ud.drugstore_id,
+ROW_NUMBER() OVER() AS id_user,
+ud.user_id as key_user,
 u.first_name, 
 u.second_name, 
 u.first_last_name, 
@@ -41,4 +40,3 @@ inner join `masterdata-farmu.db_pitayas.drugstores` d
 on ud.drugstore_id = d.id
 inner join `masterdata-farmu.db_pitayas.companies` c 
 on d.company_id = c.id
-where ud.drugstore_id = '17665074-7ff0-11ed-b13e-126148d4ffb7'

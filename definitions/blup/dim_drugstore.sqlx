@@ -1,7 +1,20 @@
 config {
     type: "table",
     schema: "m_blup",
-      description: "Esta tabla contiene a todos los usuarios que pertenecen al canal de subdistribucion. / This table contains all users belonging to the subdistribution channel.",
+    description: "Esta tabla contiene informacion sobre las farmacias. / This table contains information about the drugstores.",
+    columns: {
+    "id": "ID de usuario / User ID",
+    "first_name": "Primer nombre del usuario / User's First Name",
+    "second_name": "Segundo nombre del usuario / User's Second Name",
+    "first_last_name": "Primer apellido del usuario / User's First Last Name",
+    "second_last_name": "Segundo apellido del usuario / User's Second Last Name",
+    "email": "Correo electrónico del usuario / User's Email",
+    "cellphone": "Número de celular del usuario / User's Cellphone Number",
+    "company_name": "Nombre de la compañía / Company Name",
+    "drugstore_name": "Nombre de la farmacia / Drugstore Name",
+    "drugstore_address": "Dirección de la farmacia / Drugstore Address",
+    "drugstore_type_association": "Tipo de asociación de la farmacia / Drugstore Type of Association"
+},
     assertions: {
      uniqueKey: ["id"]
   },
@@ -10,7 +23,7 @@ config {
 
 select 
 ROW_NUMBER() OVER() AS id_drugstore,
-d.id as drugstore_id, 
+d.id as key_drugstore, 
 d.name as drugstore_name, 
 d.address as drugstore_address, 
 d.type_association as drugstore_type_association,

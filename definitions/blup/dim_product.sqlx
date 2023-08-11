@@ -1,14 +1,48 @@
 config {
     type: "table",
     schema: "m_blup",
-      description: "Esta tabla contiene a todos los usuarios que pertenecen al canal de subdistribucion. / This table contains all users belonging to the subdistribution channel.",
+    description: "Esta tabla contiene todos los productos de Blup. / This table contains all the products from Blup.",
+    columns: {
+    "id_product": "Número de fila asignado a cada producto / Row number assigned to each product",
+    "key_product": "ID clave del producto / Key product ID",
+    "drugstore_id": "ID de la farmacia a la que pertenece el producto / Drugstore ID the product belongs to",
+    "product_name": "Nombre del producto / Product name",
+    "cost": "Costo del producto para la farmacia / Product cost for the drugstore",
+    "sale_price": "Precio de venta del producto / Product sale price",
+    "utility_percentage": "Porcentaje de utilidad del producto / Product utility percentage",
+    "profit": "Ganancia del producto / Product profit",
+    "quantity": "Cantidad disponible del producto / Available quantity of the product",
+    "unit_sizes": "Tamaños de unidad disponibles para el producto / Available unit sizes for the product",
+    "blister": "Tipo de empaque blister / Blister packaging type",
+    "barcode": "Código de barras del producto / Product barcode",
+    "type": "Tipo de producto / Product type",
+    "status": "Estado del producto / Product status",
+    "brand": "Marca del producto / Product brand",
+    "category": "Categoría del producto / Product category",
+    "description": "Descripción del producto / Product description"
+},  
     assertions: {
-     uniqueKey: ["id"]
+    uniqueKey: ["id"]
   },
     tags: ["dimension"]
 }
 
-select *
-from `masterdata-farmu.db_pitayas.product_presentations` pp on od.product_presentation_id = pp.id 
-left join `masterdata-farmu.db_pitayas.products` p on od.product_id = p.id 
-left join `masterdata-farmu.db_pitayas.products_farmu` pf on p.product_farmu_id = pf.id
+select 
+ROW_NUMBER() OVER() AS id_product,
+p.id as key_product,
+p.drugstore_id,
+p.name as product_name,
+p.cost,
+p.sale_price,
+p.utility_percentage,
+p.profit,
+p.quantity,
+p.unit_sizes,
+p.blister,
+p.barcode,
+p.type,
+p.status,
+p.brand,
+p.category,
+p.description,
+from `masterdata-farmu.db_pitayas.products` p
