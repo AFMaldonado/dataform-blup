@@ -34,10 +34,10 @@ c.name as company_name,
 d.name as drugstore_name,
 d.address as drugstore_address,
 d.type_association as drugstore_type_association
-from `masterdata-farmu.db_pitayas.users` u 
-inner join `masterdata-farmu.db_pitayas.users_drugstores` ud 
+from `datamartblup.db_blup.users` u 
+inner join `datamartblup.db_blup.users_drugstores` ud 
 on u.id = ud.user_id 
-inner join `masterdata-farmu.db_pitayas.drugstores` d 
+inner join `datamartblup.db_blup.drugstores` d 
 on ud.drugstore_id = d.id
-inner join `masterdata-farmu.db_pitayas.companies` c 
+inner join `datamartblup.db_blup.companies` c 
 on d.company_id = c.id

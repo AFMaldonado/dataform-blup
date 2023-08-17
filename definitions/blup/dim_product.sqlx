@@ -45,4 +45,4 @@ p.status,
 p.brand,
 p.category,
 p.description,
-from `masterdata-farmu.db_pitayas.products` p
+from `datamartblup.db_blup.products` p

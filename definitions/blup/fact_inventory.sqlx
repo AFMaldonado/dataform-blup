@@ -25,11 +25,13 @@ with
 select 
 ROW_NUMBER() OVER() AS id,
 dp.id_product,
+i.action_by_user_id as user_id,
 i.cost, 
 i.lot,
 i.initial_quantity, 
 i.actually_quantity,
 i.active as active_inventory
-from `masterdata-farmu.db_pitayas.inventories` i
+from `datamartblup.db_blup.inventories` i
 left join dim_product dp on i.product_id = dp.key_product 
+left join dim_user du on i.action_by_user_id = du.key_user
 

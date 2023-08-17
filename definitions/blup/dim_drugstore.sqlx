@@ -29,6 +29,6 @@ d.address as drugstore_address,
 d.type_association as drugstore_type_association,
 c.name as company_name,
 ci.name as city_name
-from `masterdata-farmu.db_pitayas.drugstores` d 
-left join `masterdata-farmu.db_pitayas.companies` c on d.company_id = c.id
-left join `masterdata-farmu.db_pitayas.cities` ci on d.city_id = ci.id
+from `datamartblup.db_blup.drugstores` d 
+left join `datamartblup.db_blup.companies` c on d.company_id = c.id
+left join `datamartblup.db_blup.cities` ci on d.city_id = ci.id
