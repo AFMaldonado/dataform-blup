@@ -13,7 +13,7 @@ config {
     "active_inventory": "Estado del producto en inventario (activo o no) / Status of the product in inventory (active or not)"
 },
     assertions: {
-     uniqueKey: ["id"]
+     uniqueKey: ["id_inventory"]
   },
     tags: ["fact"]
 }

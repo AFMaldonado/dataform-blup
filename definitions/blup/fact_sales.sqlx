@@ -16,7 +16,7 @@ config {
     "free_sale": "Indicador de venta libre. Un valor verdadero indica que el producto fue vendido sin restricciones especiales, como recetas médicas. / Free sale indicator. A true value indicates that the product was sold without special restrictions, such as medical prescriptions."
 },    
     assertions: {
-     uniqueKey: ["id"]
+     uniqueKey: ["id_sales"]
   },
     tags: ["fact"]
 }
