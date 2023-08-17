@@ -4,8 +4,8 @@ config {
     description: "Esta tabla contiene todos los productos de Blup. / This table contains all the products from Blup.",
     columns: {
     "id_product": "Número de fila asignado a cada producto / Row number assigned to each product",
-    "key_product": "ID clave del producto / Key product ID",
-    "drugstore_id": "ID de la farmacia a la que pertenece el producto / Drugstore ID the product belongs to",
+    "key_product": "ID clave de negocio del producto / Key business product ID",
+    "id_drugstore": "ID de la farmacia a la que pertenece el producto / Drugstore ID the product belongs to",
     "product_name": "Nombre del producto / Product name",
     "cost": "Costo del producto para la farmacia / Product cost for the drugstore",
     "sale_price": "Precio de venta del producto / Product sale price",
@@ -27,10 +27,13 @@ config {
     tags: ["dimension"]
 }
 
+with 
+    dim_drugstore as (select * from ${ref('dim_drugstore')})
+
 select 
 ROW_NUMBER() OVER() AS id_product,
 p.id as key_product,
-p.drugstore_id,
+dd.id_drugstore,
 p.name as product_name,
 p.cost,
 p.sale_price,
@@ -46,3 +49,4 @@ p.brand,
 p.category,
 p.description,
 from `datamartblup.db_blup.products` p
+left join dim_drugstore dd on p.drugstore_id = dd.key_drugstore

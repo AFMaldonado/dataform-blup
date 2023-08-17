@@ -3,17 +3,13 @@ config {
     schema: "m_blup",
     description: "Esta tabla contiene informacion sobre las farmacias. / This table contains information about the drugstores.",
     columns: {
-    "id": "ID de usuario / User ID",
-    "first_name": "Primer nombre del usuario / User's First Name",
-    "second_name": "Segundo nombre del usuario / User's Second Name",
-    "first_last_name": "Primer apellido del usuario / User's First Last Name",
-    "second_last_name": "Segundo apellido del usuario / User's Second Last Name",
-    "email": "Correo electrónico del usuario / User's Email",
-    "cellphone": "Número de celular del usuario / User's Cellphone Number",
-    "company_name": "Nombre de la compañía / Company Name",
-    "drugstore_name": "Nombre de la farmacia / Drugstore Name",
-    "drugstore_address": "Dirección de la farmacia / Drugstore Address",
-    "drugstore_type_association": "Tipo de asociación de la farmacia / Drugstore Type of Association"
+    "id_drugstore": "Número de fila de la farmacia / Drugstore row number",
+    "key_drugstore": "Clave de negocio de la farmacia / Drugstore business key",
+    "drugstore_name": "Nombre de la farmacia / Drugstore name",
+    "drugstore_address": "Dirección de la farmacia / Drugstore address",
+    "drugstore_type_association": "Tipo de asociación de la farmacia / Drugstore association type",
+    "company_name": "Nombre de la compañía / Company name",
+    "city_name": "Nombre de la ciudad / City name"
 },
     assertions: {
      uniqueKey: ["id_drugstore"]

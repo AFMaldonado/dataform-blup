@@ -3,7 +3,8 @@ config {
     schema: "m_blup",
     description: "Esta tabla contiene a todos los usuarios de las distintas droguerias. / This table contains all the users from different drugstores.",
     columns: {
-    "id": "ID de usuario / User ID",
+    "id_user": "ID de usuario / User ID",
+    "key_user": "ID clave de negocio del usuario / Key business user ID",
     "first_name": "Primer nombre del usuario / User's First Name",
     "second_name": "Segundo nombre del usuario / User's Second Name",
     "first_last_name": "Primer apellido del usuario / User's First Last Name",

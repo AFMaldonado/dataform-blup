@@ -3,9 +3,11 @@ config {
     schema: "m_blup",
     description: "Esta tabla contiene a todos las ventas de las droguerias de la unidad de negocio Blup / This table contains all the sales from the pharmacies of the Blup business unit.",
     columns: {
-    "id": "Identificador único del detalle de la orden. Este valor permite distinguir de manera única cada registro de detalle de orden en la tabla. / Unique identifier of the order detail. This value uniquely distinguishes each order detail record in the table.",
+    "id_sales": "Identificador único del detalle de la orden. Este valor permite distinguir de manera única cada registro de detalle de orden en la tabla. / Unique identifier of the order detail. This value uniquely distinguishes each order detail record in the table.",
     "order_id": "Identificador de la orden a la que pertenece este detalle. Permite relacionar cada registro de detalle con su orden correspondiente. / Identifier of the order to which this detail belongs. It allows relating each detail record to its corresponding order.",
+    "order_details_id": "ID de detalles del pedido / Order details ID",
     "id_product": "Identificador del producto asociado al detalle de la orden. Se refiere al ID único del producto que se vendió o se incluyó en la orden. / Identifier of the product associated with the order detail. It refers to the unique ID of the product that was sold or included in the order.",
+    "id_user": "ID de usuario / User ID",
     "quantity": "Cantidad de unidades del producto incluidas en este detalle de orden. Indica la cantidad específica de productos involucrados en la transacción. / Quantity of product units included in this order detail. It indicates the specific quantity of products involved in the transaction.",
     "sale_price": "Precio de venta unitario del producto en este detalle. Representa el costo individual de cada unidad del producto en esta transacción. / Unit sale price of the product in this detail. It represents the individual cost of each unit of the product in this transaction.",
     "subtotal": "Subtotal calculado para este detalle de orden. Es el resultado de multiplicar la cantidad por el precio de venta unitario. / Subtotal calculated for this order detail. It is the result of multiplying the quantity by the unit sale price.",
@@ -25,9 +27,9 @@ with
     dim_drugstore as (select * from ${ref('dim_drugstore')})
 
 select 
-ROW_NUMBER() OVER() AS id,
-od.id as order_details_id, 
-od.order_id, 
+ROW_NUMBER() OVER() AS id_sales,
+od.order_id,
+od.id as order_details_id,  
 dp.id_product,
 du.id_user,
 od.quantity, 

@@ -3,8 +3,9 @@ config {
     schema: "m_blup",
     description: "Esta tabla contiene los inventarios de cada tienda en la unidad de negocio Blup / This table contains the inventories of each store in the Blup business unit.",
     columns: {
-    "id": "Número de FILA asignado a cada fila / ROW number assigned to each row",
+    "id_inventory": "Número de FILA asignado a cada fila / ROW number assigned to each row",
     "id_product": "Número de fila asignado a cada producto / Row number assigned to each product",
+    "id_user": "ID de usuario / User ID",
     "cost": "Costo del producto / Cost of the product",
     "lot": "Lote del producto / Product lot",
     "initial_quantity": "Cantidad inicial del producto en inventario / Initial quantity of the product in inventory",
@@ -23,7 +24,7 @@ with
     dim_drugstore as (select * from ${ref('dim_drugstore')})
 
 select 
-ROW_NUMBER() OVER() AS id,
+ROW_NUMBER() OVER() AS id_inventory,
 dp.id_product,
 du.id_user,
 i.cost, 
