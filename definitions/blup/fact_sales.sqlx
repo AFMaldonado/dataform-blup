@@ -25,10 +25,11 @@ with
     dim_drugstore as (select * from ${ref('dim_drugstore')})
 
 select 
-od.id, 
-o.action_by_user_id as user_id,
+ROW_NUMBER() OVER() AS id,
+od.id as order_details_id, 
 od.order_id, 
-dp.id_product, 
+dp.id_product,
+du.id_user,
 od.quantity, 
 od.sale_price,
 od.subtotal, 
@@ -38,4 +39,5 @@ od.free_sale,
 from `datamartblup.db_blup.order_details` od 
 left join `datamartblup.db_blup.orders` o on o.id = od.order_id 
 left join dim_product dp on od.product_id = dp.key_product
+left join dim_user du on o.action_by_user_id = du.key_user
 
